@@ -28,7 +28,7 @@ import java.util.HashMap;
  */
 public class OSRMRoadManager extends RoadManager {
 
-	static final String SERVICE = "https://router.project-osrm.org/route/v1/driving/";
+	static final String SERVICE = "https://staging-api.toters-api.com/api/osrm/road/";
 	private final Context mContext;
 	protected String mServiceUrl;
 	protected String mUserAgent;
@@ -140,9 +140,6 @@ public class OSRMRoadManager extends RoadManager {
 				urlString.append(';');
 			urlString.append(geoPointAsLonLatString(p));
 		}
-		urlString.append("?alternatives="+(getAlternate?"true" : "false"));
-		urlString.append("&overview=full&steps=true");
-		urlString.append(mOptions);
 		return urlString.toString();
 	}
 
