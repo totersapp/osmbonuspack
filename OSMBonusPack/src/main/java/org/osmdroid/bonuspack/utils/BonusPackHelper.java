@@ -46,10 +46,14 @@ public class BonusPackHelper {
 	 * @param userAgent
 	 * @return the whole content, or null if any issue.
 	 */
-	public static String requestStringFromUrl(String url, String userAgent) {
+	public static String requestStringFromUrl(String url, String userAgent, String mToken) {
 		HttpConnection connection = new HttpConnection();
-		if (userAgent != null)
+		if (userAgent != null){
 			connection.setUserAgent(userAgent);
+		}
+		if (mToken != null){
+			connection.setShopperAuthorizationToken(mToken);
+		}
 		connection.doGet(url);
 		String result = connection.getContentAsString();
 		connection.close();
@@ -61,7 +65,7 @@ public class BonusPackHelper {
 	 * @return the whole content, or null if any issue. 
 	 */
 	public static String requestStringFromUrl(String url) {
-		return requestStringFromUrl(url, null);
+		return requestStringFromUrl(url, null, null);
 	}
 
 	/**

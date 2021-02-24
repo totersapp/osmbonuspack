@@ -198,7 +198,7 @@ public class GeocoderNominatim {
 			+ "&lat=" + latitude 
 			+ "&lon=" + longitude;
 		Log.d(BonusPackHelper.LOG_TAG, "GeocoderNominatim::getFromLocation:"+url);
-		String result = BonusPackHelper.requestStringFromUrl(url, mUserAgent);
+		String result = BonusPackHelper.requestStringFromUrl(url, mUserAgent, null);
 		if (result == null)
 			throw new IOException();
 		try {
@@ -248,7 +248,7 @@ public class GeocoderNominatim {
 			//Upgrade is on hold, waiting for MapQuest service to become compatible. 
 		}
 		Log.d(BonusPackHelper.LOG_TAG, "GeocoderNominatim::getFromLocationName:"+url);
-		String result = BonusPackHelper.requestStringFromUrl(url, mUserAgent);
+		String result = BonusPackHelper.requestStringFromUrl(url, mUserAgent, null);
 		//Log.d(BonusPackHelper.LOG_TAG, result);
 		if (result == null)
 			throw new IOException();

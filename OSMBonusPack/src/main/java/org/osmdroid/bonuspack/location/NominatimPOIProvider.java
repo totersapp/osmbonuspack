@@ -80,7 +80,7 @@ public class NominatimPOIProvider {
 	 */
 	public ArrayList<POI> getThem(String url){
 		Log.d(BonusPackHelper.LOG_TAG, "NominatimPOIProvider:get:"+url);
-		String jString = BonusPackHelper.requestStringFromUrl(url, mUserAgent);
+		String jString = BonusPackHelper.requestStringFromUrl(url, mUserAgent, null);
 		if (jString == null) {
 			Log.e(BonusPackHelper.LOG_TAG, "NominatimPOIProvider: request failed.");
 			return null;

@@ -32,6 +32,7 @@ public class HttpConnection {
     private static OkHttpClient client;
     private InputStream stream;
     private String mUserAgent;
+    private String mShopperAuthorizationToken;
     private Response response;
 
     private static OkHttpClient getOkHttpClient() {
@@ -60,11 +61,19 @@ public class HttpConnection {
 		mUserAgent = userAgent;
 	}
 
+	public void setShopperAuthorizationToken(String token){
+        mShopperAuthorizationToken = token;
+    }
+
 	public void doGet(final String url) {
         try {
             Request.Builder request = new Request.Builder().url(url);
-            if (mUserAgent != null)
+            if (mUserAgent != null) {
                 request.addHeader("User-Agent", mUserAgent);
+            }
+            if (mShopperAuthorizationToken != null){
+                request.addHeader("Authorization", mShopperAuthorizationToken);
+            }
             response = getOkHttpClient().newCall(request.build()).execute();
             Integer status = response.code();
             if (status != 200) {

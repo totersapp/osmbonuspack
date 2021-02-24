@@ -32,6 +32,7 @@ public class OSRMRoadManager extends RoadManager {
 	private final Context mContext;
 	protected String mServiceUrl;
 	protected String mUserAgent;
+	protected String mToken;
 
 	/**
 	 * mapping from OSRM StepManeuver types to MapQuest maneuver IDs:
@@ -131,7 +132,11 @@ public class OSRMRoadManager extends RoadManager {
 	public void setUserAgent(String userAgent){
 		mUserAgent = userAgent;
 	}
-	
+
+	public void setAuthToken(String token){
+		mToken = token;
+	}
+
 	protected String getUrl(ArrayList<GeoPoint> waypoints, boolean getAlternate) {
 		StringBuilder urlString = new StringBuilder(mServiceUrl);
 		for (int i=0; i<waypoints.size(); i++){
@@ -185,7 +190,7 @@ public class OSRMRoadManager extends RoadManager {
 	protected Road[] getRoads(ArrayList<GeoPoint> waypoints, boolean getAlternate) {
 		String url = getUrl(waypoints, getAlternate);
 		Log.d(BonusPackHelper.LOG_TAG, "OSRMRoadManager.getRoads:" + url);
-		String jString = BonusPackHelper.requestStringFromUrl(url, mUserAgent);
+		String jString = BonusPackHelper.requestStringFromUrl(url, mUserAgent, mToken);
 		if (jString == null) {
 			Log.e(BonusPackHelper.LOG_TAG, "OSRMRoadManager::getRoad: request failed.");
 			return defaultRoad(waypoints);
